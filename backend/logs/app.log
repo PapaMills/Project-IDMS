@@ -1,0 +1,17 @@
+2025-03-21 10:05:51 error: Error during login: generateToken is not defined
+2025-03-21 10:06:10 error: Error during login: generateToken is not defined
+2025-03-21 10:06:50 warn: Registration attempt with existing email: test@example.com
+2025-03-21 10:06:57 error: Error during login: generateToken is not defined
+2025-03-21 10:08:10 info: User logged in: test@example.com
+2025-03-21 10:12:52 info: User logged in: test@example.com
+2025-03-21 10:31:24 error: Error fetching IP details: Cannot read properties of undefined (reading 'isp')
+2025-03-21 10:31:24 info: IP activity logged: ::ffff:127.0.0.1 - api-request
+2025-03-21 10:31:25 info: User logged in: test@example.com
+2025-03-21 10:53:57 info: IP activity logged: ::ffff:127.0.0.1 - api-request
+2025-03-21 10:53:58 info: New user registered: james12@gmail.com
+2025-03-21 10:54:43 info: IP activity logged: ::ffff:127.0.0.1 - api-request
+2025-03-21 10:54:44 info: User logged in: james12@gmail.com
+2025-03-21 10:56:02 info: IP activity logged: ::ffff:127.0.0.1 - api-request
+2025-03-21 10:56:18 info: IP activity logged: ::ffff:127.0.0.1 - api-request
+2025-03-21 10:56:44 info: IP activity logged: ::ffff:127.0.0.1 - api-request
+2025-03-21 10:57:13 info: IP activity logged: ::ffff:127.0.0.1 - api-request
