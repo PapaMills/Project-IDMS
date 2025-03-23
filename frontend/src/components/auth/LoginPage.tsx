@@ -50,7 +50,6 @@ const LoginPage: React.FC = () => {
       [name]: value,
     }));
 
-    // Clear field-specific error when user types
     if (errors[name as keyof LoginFormData]) {
       setErrors((prev) => ({
         ...prev,
@@ -58,7 +57,6 @@ const LoginPage: React.FC = () => {
       }));
     }
 
-    // Clear API error when user makes any change
     if (apiError) setApiError("");
   };
 
@@ -71,50 +69,36 @@ const LoginPage: React.FC = () => {
     setApiError("");
 
     try {
-      // Mock login - no actual API call
-      setIsLoading(true);
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
 
-      // Simulate API delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Mock credentials check
-      const mockUsers = [
-        { email: "admin@example.com", password: "password123" },
-        { email: "user@example.com", password: "password123" },
-      ];
-
-      // Also check for users registered through the registration page
-      let registeredUsers = [];
-      try {
-        registeredUsers = JSON.parse(localStorage.getItem("mockUsers") || "[]");
-      } catch (e) {
-        console.error("Error parsing mockUsers from localStorage:", e);
+      let data;
+      const text = await response.text();
+      if (text) {
+        data = JSON.parse(text);
+      } else {
+        data = {};
       }
 
-      const allUsers = [...mockUsers, ...registeredUsers];
-
-      const user = allUsers.find(
-        (u) => u.email === formData.email && u.password === formData.password,
-      );
-
-      if (!user) {
-        throw new Error("Invalid email or password");
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
       }
 
-      // Create a mock token
-      const mockToken = btoa(
-        JSON.stringify({ email: formData.email, timestamp: Date.now() }),
-      );
+      localStorage.setItem('idms_token', data.token);
+      console.log("User logged in:", data.user);
 
-      // Store JWT token
-      localStorage.setItem("idms_token", mockToken);
-      console.log("Token stored in localStorage:", mockToken);
-
-      // Redirect to dashboard
       navigate("/");
     } catch (error) {
       setApiError(
-        error instanceof Error ? error.message : "An unexpected error occurred",
+        error instanceof Error ? error.message : "An unexpected error occurred"
       );
     } finally {
       setIsLoading(false);

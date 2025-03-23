@@ -88,51 +88,32 @@ const RegisterPage: React.FC = () => {
     setApiError("");
 
     try {
-      // Mock registration - no actual API call
-      setIsLoading(true);
-
-      // Simulate API delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Simulate successful registration
-      console.log("Registration data:", {
-        username: formData.username,
-        email: formData.email,
-        password: formData.password, // In a real app, never log passwords
-      });
-
-      // For demo purposes, we'll store the registered user in localStorage
-      // In a real app, this would be handled by a backend
-      let existingUsers = [];
-      try {
-        existingUsers = JSON.parse(localStorage.getItem("mockUsers") || "[]");
-      } catch (e) {
-        console.error("Error parsing mockUsers from localStorage:", e);
-      }
-
-      existingUsers.push({
-        username: formData.username,
-        email: formData.email,
-        password: formData.password,
-      });
-      localStorage.setItem("mockUsers", JSON.stringify(existingUsers));
-      console.log("User registered and stored in localStorage");
-
-      // Create a mock token for auto-login
-      const mockToken = btoa(
-        JSON.stringify({
+      // Correct registration API call
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           username: formData.username,
           email: formData.email,
-          timestamp: Date.now(),
+          password: formData.password,
         }),
-      );
+      });
 
-      // Option to auto-login after registration
-      // localStorage.setItem("idms_token", mockToken);
-      // navigate("/");
+      const data = await response.json();
 
-      // Redirect to login page instead
+      if (!response.ok) {
+        throw new Error(data.message || 'Registration failed');
+      }
+
+      // Store the JWT token and user data
+      localStorage.setItem('idms_token', data.token);
+      console.log("User registered:", data.user);
+
+      // Redirect to login page
       navigate("/login");
+
     } catch (error) {
       setApiError(
         error instanceof Error ? error.message : "An unexpected error occurred",
