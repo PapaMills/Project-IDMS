@@ -57,3 +57,8 @@
 2025-03-22 13:01:37 info: New user registered: jane@gmail.com
 2025-03-22 13:28:14 info: IP activity logged: ::1 - api-request
 2025-03-22 13:28:15 info: New user registered: german@gmail.com
+2025-03-23 05:49:50 error: Error fetching IP details: Cannot read properties of undefined (reading 'isp')
+2025-03-23 05:49:50 info: IP activity logged: ::1 - api-request
+2025-03-23 05:49:51 info: New user registered: kwame@gmail.com
+2025-03-23 05:52:29 info: IP activity logged: ::1 - api-request
+2025-03-23 05:52:30 info: User logged in: kwame@gmail.com
