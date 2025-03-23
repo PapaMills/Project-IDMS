@@ -2,6 +2,7 @@ import { Suspense, lazy, useEffect } from "react";
 import { useRoutes, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/home";
 import routes from "tempo-routes";
+import ThreatsList from "./components/dashboard/ThreatsList";
 
 // Lazy load auth components for better performance
 const LoginPage = lazy(() => import("./components/auth/LoginPage"));
@@ -44,7 +45,15 @@ function App() {
             path="/"
             element={
               <ProtectedRoute>
-                <Home />
+          <Home />
+              </ProtectedRoute>
+            } 
+          />
+          <Route
+            path="/threats"
+            element={
+              <ProtectedRoute>
+          <ThreatsList />
               </ProtectedRoute>
             }
           />
