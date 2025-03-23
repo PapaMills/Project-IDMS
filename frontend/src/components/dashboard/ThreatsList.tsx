@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Sidebar from "./Sidebar";
+import Header from "./Header"; // Assuming you have a Header component
 import {
   Table,
   TableBody,
@@ -135,248 +137,265 @@ const ThreatsList: React.FC<ThreatsListProps> = ({
   });
 
   return (
-    <div className="w-full bg-background rounded-lg border shadow-sm p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">Detected Threats</h2>
-        <div className="flex space-x-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm">
-                <Filter className="h-4 w-4 mr-2" />
-                Filter
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              <div className="p-2">
-                <h3 className="font-medium mb-2">Threat Type</h3>
-                <div className="flex flex-wrap gap-1 mb-2">
-                  {["All", "Malware", "Intrusion", "DDoS", "Phishing"].map(
-                    (type) => (
-                      <Badge
-                        key={type}
-                        variant={
-                          filters.type === type ||
-                          (type === "All" && !filters.type)
-                            ? "default"
-                            : "outline"
-                        }
-                        className="cursor-pointer"
-                        onClick={() =>
-                          handleFilterChange(
-                            "type",
-                            type === "All" ? null : type,
-                          )
-                        }
-                      >
-                        {type}
-                      </Badge>
-                    ),
-                  )}
-                </div>
-
-                <h3 className="font-medium mb-2 mt-3">Severity</h3>
-                <div className="flex flex-wrap gap-1 mb-2">
-                  {["All", "critical", "high", "medium", "low"].map(
-                    (severity) => (
-                      <Badge
-                        key={severity}
-                        variant={
-                          filters.severity === severity ||
-                          (severity === "All" && !filters.severity)
-                            ? severity === "All"
-                              ? "default"
-                              : getSeverityColor(severity)
-                            : "outline"
-                        }
-                        className="cursor-pointer"
-                        onClick={() =>
-                          handleFilterChange(
-                            "severity",
-                            severity === "All" ? null : severity,
-                          )
-                        }
-                      >
-                        {severity.charAt(0).toUpperCase() + severity.slice(1)}
-                      </Badge>
-                    ),
-                  )}
-                </div>
-
-                <h3 className="font-medium mb-2 mt-3">Status</h3>
-                <div className="flex flex-wrap gap-1 mb-2">
-                  {["All", "active", "investigating", "mitigated"].map(
-                    (status) => (
-                      <Badge
-                        key={status}
-                        variant={
-                          filters.status === status ||
-                          (status === "All" && !filters.status)
-                            ? status === "All"
-                              ? "default"
-                              : getStatusColor(status)
-                            : "outline"
-                        }
-                        className="cursor-pointer"
-                        onClick={() =>
-                          handleFilterChange(
-                            "status",
-                            status === "All" ? null : status,
-                          )
-                        }
-                      >
-                        {status.charAt(0).toUpperCase() + status.slice(1)}
-                      </Badge>
-                    ),
-                  )}
-                </div>
-
-                <h3 className="font-medium mb-2 mt-3">Time Range</h3>
-                <div className="flex flex-wrap gap-1">
-                  {["All", "Last 24h", "Last 7d", "Last 30d"].map((range) => (
-                    <Badge
-                      key={range}
-                      variant={
-                        filters.timeRange === range ||
-                        (range === "All" && !filters.timeRange)
-                          ? "default"
-                          : "outline"
-                      }
-                      className="cursor-pointer"
-                      onClick={() =>
-                        handleFilterChange(
-                          "timeRange",
-                          range === "All" ? null : range,
-                        )
-                      }
-                    >
-                      {range}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      </div>
-
-      <div className="rounded-md border">
-        <Table>
-          <TableCaption>A list of detected threats in your system</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead
-                className="w-[180px] cursor-pointer"
-                onClick={() => handleSort("type")}
-              >
-                <div className="flex items-center">
-                  Type
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
-                </div>
-              </TableHead>
-              <TableHead
-                className="w-[120px] cursor-pointer"
-                onClick={() => handleSort("severity")}
-              >
-                <div className="flex items-center">
-                  Severity
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
-                </div>
-              </TableHead>
-              <TableHead
-                className="cursor-pointer"
-                onClick={() => handleSort("sourceIP")}
-              >
-                <div className="flex items-center">
-                  Source IP
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
-                </div>
-              </TableHead>
-              <TableHead
-                className="cursor-pointer"
-                onClick={() => handleSort("timestamp")}
-              >
-                <div className="flex items-center">
-                  Timestamp
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
-                </div>
-              </TableHead>
-              <TableHead
-                className="w-[120px] cursor-pointer"
-                onClick={() => handleSort("status")}
-              >
-                <div className="flex items-center">
-                  Status
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
-                </div>
-              </TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {sortedThreats.length > 0 ? (
-              sortedThreats.map((threat) => (
-                <TableRow key={threat.id}>
-                  <TableCell className="font-medium">{threat.type}</TableCell>
-                  <TableCell>
-                    <div className="flex items-center">
-                      {getSeverityIcon(threat.severity)}
-                      <Badge variant={getSeverityColor(threat.severity) as any}>
-                        {threat.severity.charAt(0).toUpperCase() +
-                          threat.severity.slice(1)}
-                      </Badge>
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-1 flex flex-col">
+        <Header />
+        <div className="w-full bg-background rounded-lg border shadow-sm p-4">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-semibold">Detected Threats</h2>
+            <div className="flex space-x-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="sm">
+                    <Filter className="h-4 w-4 mr-2" />
+                    Filter
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <div className="p-2">
+                    <h3 className="font-medium mb-2">Threat Type</h3>
+                    <div className="flex flex-wrap gap-1 mb-2">
+                      {["All", "Malware", "Intrusion", "DDoS", "Phishing"].map(
+                        (type) => (
+                          <Badge
+                            key={type}
+                            variant={
+                              filters.type === type ||
+                              (type === "All" && !filters.type)
+                                ? "default"
+                                : "outline"
+                            }
+                            className="cursor-pointer"
+                            onClick={() =>
+                              handleFilterChange(
+                                "type",
+                                type === "All" ? null : type,
+                              )
+                            }
+                          >
+                            {type}
+                          </Badge>
+                        ),
+                      )}
                     </div>
-                  </TableCell>
-                  <TableCell>{threat.sourceIP}</TableCell>
-                  <TableCell>
-                    {new Date(threat.timestamp).toLocaleString()}
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant={getStatusColor(threat.status) as any}>
-                      {threat.status.charAt(0).toUpperCase() +
-                        threat.status.slice(1)}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex justify-end space-x-2">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => onViewDetails(threat.id)}
-                      >
-                        <Eye className="h-4 w-4" />
-                      </Button>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem
+
+                    <h3 className="font-medium mb-2 mt-3">Severity</h3>
+                    <div className="flex flex-wrap gap-1 mb-2">
+                      {["All", "critical", "high", "medium", "low"].map(
+                        (severity) => (
+                          <Badge
+                            key={severity}
+                            variant={
+                              filters.severity === severity ||
+                              (severity === "All" && !filters.severity)
+                                ? severity === "All"
+                                  ? "default"
+                                  : getSeverityColor(severity)
+                                : "outline"
+                            }
+                            className="cursor-pointer"
+                            onClick={() =>
+                              handleFilterChange(
+                                "severity",
+                                severity === "All" ? null : severity,
+                              )
+                            }
+                          >
+                            {severity.charAt(0).toUpperCase() +
+                              severity.slice(1)}
+                          </Badge>
+                        ),
+                      )}
+                    </div>
+
+                    <h3 className="font-medium mb-2 mt-3">Status</h3>
+                    <div className="flex flex-wrap gap-1 mb-2">
+                      {["All", "active", "investigating", "mitigated"].map(
+                        (status) => (
+                          <Badge
+                            key={status}
+                            variant={
+                              filters.status === status ||
+                              (status === "All" && !filters.status)
+                                ? status === "All"
+                                  ? "default"
+                                  : getStatusColor(status)
+                                : "outline"
+                            }
+                            className="cursor-pointer"
+                            onClick={() =>
+                              handleFilterChange(
+                                "status",
+                                status === "All" ? null : status,
+                              )
+                            }
+                          >
+                            {status.charAt(0).toUpperCase() + status.slice(1)}
+                          </Badge>
+                        ),
+                      )}
+                    </div>
+
+                    <h3 className="font-medium mb-2 mt-3">Time Range</h3>
+                    <div className="flex flex-wrap gap-1">
+                      {["All", "Last 24h", "Last 7d", "Last 30d"].map(
+                        (range) => (
+                          <Badge
+                            key={range}
+                            variant={
+                              filters.timeRange === range ||
+                              (range === "All" && !filters.timeRange)
+                                ? "default"
+                                : "outline"
+                            }
+                            className="cursor-pointer"
+                            onClick={() =>
+                              handleFilterChange(
+                                "timeRange",
+                                range === "All" ? null : range,
+                              )
+                            }
+                          >
+                            {range}
+                          </Badge>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </div>
+
+          <div className="rounded-md border">
+            <Table>
+              <TableCaption>
+                A list of detected threats in your system
+              </TableCaption>
+              <TableHeader>
+                <TableRow>
+                  <TableHead
+                    className="w-[180px] cursor-pointer"
+                    onClick={() => handleSort("type")}
+                  >
+                    <div className="flex items-center">
+                      Type
+                      <ArrowUpDown className="ml-2 h-4 w-4" />
+                    </div>
+                  </TableHead>
+                  <TableHead
+                    className="w-[120px] cursor-pointer"
+                    onClick={() => handleSort("severity")}
+                  >
+                    <div className="flex items-center">
+                      Severity
+                      <ArrowUpDown className="ml-2 h-4 w-4" />
+                    </div>
+                  </TableHead>
+                  <TableHead
+                    className="cursor-pointer"
+                    onClick={() => handleSort("sourceIP")}
+                  >
+                    <div className="flex items-center">
+                      Source IP
+                      <ArrowUpDown className="ml-2 h-4 w-4" />
+                    </div>
+                  </TableHead>
+                  <TableHead
+                    className="cursor-pointer"
+                    onClick={() => handleSort("timestamp")}
+                  >
+                    <div className="flex items-center">
+                      Timestamp
+                      <ArrowUpDown className="ml-2 h-4 w-4" />
+                    </div>
+                  </TableHead>
+                  <TableHead
+                    className="w-[120px] cursor-pointer"
+                    onClick={() => handleSort("status")}
+                  >
+                    <div className="flex items-center">
+                      Status
+                      <ArrowUpDown className="ml-2 h-4 w-4" />
+                    </div>
+                  </TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {sortedThreats.length > 0 ? (
+                  sortedThreats.map((threat) => (
+                    <TableRow key={threat.id}>
+                      <TableCell className="font-medium">
+                        {threat.type}
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex items-center">
+                          {getSeverityIcon(threat.severity)}
+                          <Badge
+                            variant={getSeverityColor(threat.severity) as any}
+                          >
+                            {threat.severity.charAt(0).toUpperCase() +
+                              threat.severity.slice(1)}
+                          </Badge>
+                        </div>
+                      </TableCell>
+                      <TableCell>{threat.sourceIP}</TableCell>
+                      <TableCell>
+                        {new Date(threat.timestamp).toLocaleString()}
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant={getStatusColor(threat.status) as any}>
+                          {threat.status.charAt(0).toUpperCase() +
+                            threat.status.slice(1)}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex justify-end space-x-2">
+                          <Button
+                            variant="ghost"
+                            size="icon"
                             onClick={() => onViewDetails(threat.id)}
                           >
-                            View Details
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            Mark as Investigating
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>Mark as Mitigated</DropdownMenuItem>
-                          <DropdownMenuItem>Export Data</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={6} className="text-center py-6">
-                  No threats found matching the current filters
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="icon">
+                                <MoreHorizontal className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuItem
+                                onClick={() => onViewDetails(threat.id)}
+                              >
+                                View Details
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Mark as Investigating
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Mark as Mitigated
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>Export Data</DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={6} className="text-center py-6">
+                      No threats found matching the current filters
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
       </div>
     </div>
   );
