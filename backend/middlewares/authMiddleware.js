@@ -1,11 +1,15 @@
-// middlewares/authMiddleware.js
 const jwt = require('jsonwebtoken');
 const logger = require('../utils/logger');
 
 // Middleware to verify JWT token
 const authMiddleware = (req, res, next) => {
   // Get the token from the request header
-  const token = req.header('Authorization')?.replace('Bearer ', '');
+  const authHeader = req.header('Authorization');
+  logger.info(`Authorization header: ${authHeader}`);
+  const token = authHeader?.replace('Bearer ', '');
+
+  // Log the received token for debugging
+  logger.info(`Received token: ${token}`);
 
   if (!token) {
     logger.warn('Access denied: No token provided');

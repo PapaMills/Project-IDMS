@@ -12,8 +12,14 @@ dotenv.config();
 // Connect to the database
 connectDB();
 
+const cors = require('cors'); // Import CORS
+
 // Initialize Express app
 const app = express();
+
+// Use CORS middleware
+app.use(cors()); // Enable CORS for all routes
+
 
 // Middleware to parse JSON bodies
 app.use(express.json());

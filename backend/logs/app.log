@@ -15,3 +15,43 @@
 2025-03-21 10:56:18 info: IP activity logged: ::ffff:127.0.0.1 - api-request
 2025-03-21 10:56:44 info: IP activity logged: ::ffff:127.0.0.1 - api-request
 2025-03-21 10:57:13 info: IP activity logged: ::ffff:127.0.0.1 - api-request
+2025-03-22 11:51:15 info: IP activity logged: ::1 - api-request
+2025-03-22 11:51:15 warn: Access denied: No token provided
+2025-03-22 11:51:22 info: IP activity logged: ::1 - api-request
+2025-03-22 11:51:22 warn: Access denied: No token provided
+2025-03-22 11:52:57 info: IP activity logged: ::1 - api-request
+2025-03-22 11:52:57 warn: Access denied: No token provided
+2025-03-22 12:05:29 info: IP activity logged: ::1 - api-request
+2025-03-22 12:05:29 warn: Access denied: No token provided
+2025-03-22 12:06:46 info: IP activity logged: ::1 - api-request
+2025-03-22 12:06:46 warn: Access denied: No token provided
+2025-03-22 12:06:48 info: IP activity logged: ::1 - api-request
+2025-03-22 12:06:48 warn: Access denied: No token provided
+2025-03-22 12:09:08 info: IP activity logged: ::1 - api-request
+2025-03-22 12:09:08 info: Received token: undefined
+2025-03-22 12:09:08 warn: Access denied: No token provided
+2025-03-22 12:09:10 info: IP activity logged: ::1 - api-request
+2025-03-22 12:09:10 info: Received token: undefined
+2025-03-22 12:09:10 warn: Access denied: No token provided
+2025-03-22 12:12:24 info: IP activity logged: ::1 - api-request
+2025-03-22 12:12:24 info: Received token: undefined
+2025-03-22 12:12:24 warn: Access denied: No token provided
+2025-03-22 12:12:28 info: IP activity logged: ::1 - api-request
+2025-03-22 12:12:28 info: Received token: undefined
+2025-03-22 12:12:28 warn: Access denied: No token provided
+2025-03-22 12:14:12 info: IP activity logged: ::1 - api-request
+2025-03-22 12:14:12 info: Received token: undefined
+2025-03-22 12:14:12 warn: Access denied: No token provided
+2025-03-22 12:14:16 info: IP activity logged: ::1 - api-request
+2025-03-22 12:14:16 info: Received token: undefined
+2025-03-22 12:14:16 warn: Access denied: No token provided
+2025-03-22 12:16:52 info: IP activity logged: ::1 - api-request
+2025-03-22 12:16:52 info: Authorization header: undefined
+2025-03-22 12:16:52 info: Received token: undefined
+2025-03-22 12:16:52 warn: Access denied: No token provided
+2025-03-22 12:30:37 info: IP activity logged: ::1 - api-request
+2025-03-22 12:30:39 info: New user registered: kazestitches09@gmail.com
+2025-03-22 12:44:41 info: IP activity logged: ::1 - api-request
+2025-03-22 12:44:42 info: New user registered: papamills100@gmail.com
+2025-03-22 13:01:36 info: IP activity logged: ::1 - api-request
+2025-03-22 13:01:37 info: New user registered: jane@gmail.com
