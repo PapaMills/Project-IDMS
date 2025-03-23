@@ -11,6 +11,14 @@ import {
 } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "../ui/dialog";
 
 interface HeaderProps {
   userName?: string;
@@ -37,32 +45,57 @@ const Header = ({
         <div className="flex items-center gap-2">
           <Shield className="h-8 w-8 text-primary" />
           <div>
-            <h1 className="text-xl font-bold">IDMS</h1>
+            <h1 className="text-xl font-bold">Hey there</h1>
             <p className="text-xs text-muted-foreground">
-              Intrusion Detection and Monitoring System
+              Welcome to your Intrusion and Monitoring System
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onNotificationsClick}
-              aria-label="Notifications"
-            >
-              <Bell className="h-5 w-5" />
-              {notificationCount > 0 && (
-                <Badge
-                  variant="destructive"
-                  className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full p-0"
+          <Dialog>
+            <div className="relative">
+              <DialogTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={onNotificationsClick}
+                  aria-label="Notifications"
                 >
-                  {notificationCount}
-                </Badge>
-              )}
-            </Button>
-          </div>
+                  <Bell className="h-5 w-5" />
+                  {notificationCount > 0 && (
+                    <Badge
+                      variant="destructive"
+                      className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full p-0"
+                    >
+                      {notificationCount}
+                    </Badge>
+                  )}
+                </Button>
+              </DialogTrigger>
+            </div>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Notifications</DialogTitle>
+                <DialogDescription>Recent notifications</DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4">
+                {[
+                  { title: "System Alert", desc: "Unusual activity detected", time: "2m ago" },
+                  { title: "Update Available", desc: "New security patch ready", time: "1h ago" },
+                  { title: "Backup Complete", desc: "System backup finished", time: "3h ago" },
+                ].map((notification, i) => (
+                  <div key={i} className="flex items-center gap-4 p-2 rounded-lg hover:bg-muted">
+                    <div>
+                      <p className="font-medium">{notification.title}</p>
+                      <p className="text-sm text-muted-foreground">{notification.desc}</p>
+                      <p className="text-xs text-muted-foreground">{notification.time}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </DialogContent>
+          </Dialog>
 
           <Button
             variant="ghost"
