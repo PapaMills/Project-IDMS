@@ -154,8 +154,8 @@ const Home = () => {
 
             {/* Filtering System */}
             <FilteringSystem
-              onFilterChange={(filters) =>
-                console.log("Filters changed:", filters)
+              onFilterChange={() =>
+                console.log("Filters changed")
               }
             />
 

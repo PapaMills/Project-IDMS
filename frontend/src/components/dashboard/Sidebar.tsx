@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
   BarChart3,
   Shield,
@@ -9,8 +9,6 @@ import {
   Server,
   FileText,
   Home,
-  Search,
-  Bell,
   HelpCircle,
 } from "lucide-react";
 import { cn } from "../../lib/utils";
@@ -40,8 +38,10 @@ const Sidebar = ({
   className,
   collapsed = false,
   onToggleCollapse = () => {},
-  activePath = "/",
 }: SidebarProps) => {
+  const location = useLocation();
+  const [activePath, setActivePath] = useState(location.pathname);
+
   const mainNavItems: NavItem[] = [
     {
       title: "Dashboard",
@@ -102,9 +102,10 @@ const Sidebar = ({
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all",
                 collapsed ? "justify-center" : "justify-start",
                 isActive
-                  ? "bg-primary/10 text-primary"
+                  ? "bg-gray-200 text-primary"
                   : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
               )}
+              onClick={() => setActivePath(item.path)}
             >
               <div className="relative">
                 {item.icon}

@@ -3,6 +3,12 @@ import { useRoutes, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/home";
 import routes from "tempo-routes";
 import ThreatsList from "./components/dashboard/ThreatsList";
+import AnalyticsPage from "./components/dashboard/AnalyticsPage";
+import UsersPage from "./components/dashboard/UsersPage";
+import HelpPage from "./components/dashboard/HelpPage";
+import ReportsPage from "./components/dashboard/ReportsPage";
+import SystemsPage from "./components/dashboard/SystemsPage";
+import SettingsPage from "./components/dashboard/SettingsPage";
 
 // Lazy load auth components for better performance
 const LoginPage = lazy(() => import("./components/auth/LoginPage"));
@@ -45,15 +51,63 @@ function App() {
             path="/"
             element={
               <ProtectedRoute>
-          <Home />
+                <Home />
               </ProtectedRoute>
-            } 
+            }
           />
           <Route
             path="/threats"
             element={
               <ProtectedRoute>
-          <ThreatsList />
+                <ThreatsList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/analytics"
+            element={
+              <ProtectedRoute>
+                <AnalyticsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <ProtectedRoute>
+                <UsersPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/help"
+            element={
+              <ProtectedRoute>
+                <HelpPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/reports"
+            element={
+              <ProtectedRoute>
+                <ReportsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/systems"
+            element={
+              <ProtectedRoute>
+                <SystemsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <SettingsPage />
               </ProtectedRoute>
             }
           />

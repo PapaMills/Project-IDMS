@@ -97,14 +97,28 @@ const Header = ({
             </DialogContent>
           </Dialog>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={onSettingsClick}
-            aria-label="Settings"
-          >
-            <Settings className="h-5 w-5" />
-          </Button>
+            <Dialog>
+            <DialogTrigger asChild>
+              <Button
+              variant="ghost"
+              size="icon"
+              onClick={onSettingsClick}
+              aria-label="Settings"
+              >
+              <Settings className="h-5 w-5" />
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+              <DialogTitle>Settings</DialogTitle>
+              <DialogDescription>Adjust your system settings</DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4">
+              {/* Add your settings content here */}
+              <p>Settings content goes here</p>
+              </div>
+            </DialogContent>
+            </Dialog>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
