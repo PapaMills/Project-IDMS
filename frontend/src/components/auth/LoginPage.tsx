@@ -93,7 +93,10 @@ const LoginPage: React.FC = () => {
       }
 
       localStorage.setItem('idms_token', data.token);
-      console.log("User logged in:", data.user);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      console.log("User authenticated:", data.user);
+      // Redirect to dashboard or home page
+      window.location.href = '/dashboard'; 
 
       navigate("/");
     } catch (error) {
