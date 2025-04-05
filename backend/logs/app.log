@@ -90,3 +90,11 @@
 2025-04-05 04:56:55 info: New user registered: johndoe@gmail.com
 2025-04-05 04:57:23 info: IP activity logged: ::1 - api-request
 2025-04-05 04:57:24 info: User logged in: johndoe@gmail.com
+2025-04-05 05:43:54 info: IP activity logged: ::1 - api-request
+2025-04-05 05:43:55 info: New user registered: test@example.com
+2025-04-05 05:43:56 info: IP activity logged: ::1 - api-request
+2025-04-05 05:43:57 info: User logged in: test@example.com
+2025-04-05 05:49:30 info: IP activity logged: ::1 - api-request
+2025-04-05 05:49:31 warn: Failed login attempt for email: johndoe@gmail.com
+2025-04-05 05:49:39 info: IP activity logged: ::1 - api-request
+2025-04-05 05:49:40 warn: Failed login attempt for email: johndoe@gmail.com
