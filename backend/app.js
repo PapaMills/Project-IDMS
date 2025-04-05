@@ -36,12 +36,13 @@ app.use('/api', logRoutes);
 // Serve frontend files in production
 if (process.env.NODE_ENV === 'production') {
   const path = require('path');
-  // Serve static files from frontend/dist
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+  // Serve static files - works for both local and Render
+  const staticPath = path.join(__dirname, process.env.RENDER ? '../frontend/dist' : '../../frontend/dist');
+  app.use(express.static(staticPath));
   
   // Handle SPA by serving index.html for all routes
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+    res.sendFile(path.join(staticPath, 'index.html'));
   });
 } else {
   // Basic route for testing in development
