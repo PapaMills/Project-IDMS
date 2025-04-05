@@ -62,3 +62,31 @@
 2025-03-23 05:49:51 info: New user registered: kwame@gmail.com
 2025-03-23 05:52:29 info: IP activity logged: ::1 - api-request
 2025-03-23 05:52:30 info: User logged in: kwame@gmail.com
+2025-03-23 12:28:29 info: IP activity logged: ::1 - api-request
+2025-03-23 12:28:29 error: Error during registration: User validation failed: username: Username must be at least 3 characters long
+2025-03-23 12:28:33 info: IP activity logged: ::1 - api-request
+2025-03-23 12:28:34 error: Error during registration: User validation failed: username: Username must be at least 3 characters long
+2025-03-23 12:28:35 info: IP activity logged: ::1 - api-request
+2025-03-23 12:28:36 error: Error during registration: User validation failed: username: Username must be at least 3 characters long
+2025-03-23 12:28:37 info: IP activity logged: ::1 - api-request
+2025-03-23 12:28:37 error: Error during registration: User validation failed: username: Username must be at least 3 characters long
+2025-03-23 12:28:38 info: IP activity logged: ::1 - api-request
+2025-03-23 12:28:38 error: Error during registration: User validation failed: username: Username must be at least 3 characters long
+2025-03-23 12:28:40 info: IP activity logged: ::1 - api-request
+2025-03-23 12:28:40 error: Error during registration: User validation failed: username: Username must be at least 3 characters long
+2025-03-23 12:28:42 info: IP activity logged: ::1 - api-request
+2025-03-23 12:28:42 error: Error during registration: User validation failed: username: Username must be at least 3 characters long
+2025-03-23 12:29:04 info: IP activity logged: ::1 - api-request
+2025-03-23 12:29:05 warn: Login attempt with non-existent email: jp@gmail.com
+2025-03-23 12:29:06 info: IP activity logged: ::1 - api-request
+2025-03-23 12:29:07 warn: Login attempt with non-existent email: jp@gmail.com
+2025-03-23 12:29:08 info: IP activity logged: ::1 - api-request
+2025-03-23 12:29:08 warn: Login attempt with non-existent email: jp@gmail.com
+2025-03-23 12:29:09 info: IP activity logged: ::1 - api-request
+2025-03-23 12:29:09 warn: Login attempt with non-existent email: jp@gmail.com
+2025-03-23 12:29:10 info: IP activity logged: ::1 - api-request
+2025-03-23 12:29:10 warn: Login attempt with non-existent email: jp@gmail.com
+2025-04-05 04:56:54 info: IP activity logged: ::1 - api-request
+2025-04-05 04:56:55 info: New user registered: johndoe@gmail.com
+2025-04-05 04:57:23 info: IP activity logged: ::1 - api-request
+2025-04-05 04:57:24 info: User logged in: johndoe@gmail.com
