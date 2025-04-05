@@ -98,3 +98,15 @@
 2025-04-05 05:49:31 warn: Failed login attempt for email: johndoe@gmail.com
 2025-04-05 05:49:39 info: IP activity logged: ::1 - api-request
 2025-04-05 05:49:40 warn: Failed login attempt for email: johndoe@gmail.com
+2025-04-05 05:59:06 info: IP activity logged: ::1 - api-request
+2025-04-05 05:59:07 info: New user registered: ggg@gmail.com
+2025-04-05 05:59:14 info: IP activity logged: ::1 - api-request
+2025-04-05 05:59:15 warn: Failed login attempt for email: ggg@gmail.com
+2025-04-05 05:59:23 info: IP activity logged: ::1 - api-request
+2025-04-05 05:59:23 warn: Failed login attempt for email: ggg@gmail.com
+2025-04-05 05:59:30 info: IP activity logged: ::1 - api-request
+2025-04-05 05:59:31 warn: Failed login attempt for email: ggg@gmail.com
+2025-04-05 06:01:00 info: IP activity logged: ::1 - api-request
+2025-04-05 06:01:01 info: New user registered: asdf@gmail.com
+2025-04-05 06:01:12 info: IP activity logged: ::1 - api-request
+2025-04-05 06:01:13 info: User logged in: asdf@gmail.com

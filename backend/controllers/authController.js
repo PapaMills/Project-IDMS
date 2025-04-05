@@ -35,7 +35,8 @@ exports.register = async (req, res) => {
 
     const token = generateToken(user._id);
 
-    logger.info(`New user registered: ${email}`);
+    console.log(`[REGISTRATION] New user registered - Email: ${email}, Username: ${username}`);
+    logger.info(`New user registered: ${email}`); 
     res.status(201).json({
       token,
       user: {
@@ -93,6 +94,7 @@ exports.login = async (req, res) => {
 
     const token = generateToken(user._id);
 
+    console.log(`[LOGIN] User authenticated - Email: ${email}, IP: ${ipAddress}`);
     logger.info(`User logged in: ${email}`);
     res.status(200).json({
       token,
